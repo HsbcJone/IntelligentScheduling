@@ -140,6 +140,41 @@ class PipineTestApp {
   }
 
 
+
+  /**
+   * runCoodinate-IS 智能调度
+   * OOzie服务器注入定时调度coordinate
+   */
+  @Test
+  def runISByCoodinate()={
+    //智能调度的coodinate的路径和配置
+    conf.setProperty("oozie.coord.application.path","hdfs:///user/mengxp/IS/IS-Coodinate/coordinator.xml")
+    conf.setProperty("start_date","2021-02-02T10:50+0800")
+    conf.setProperty("end_date","2021-02-28T11:30+0800")
+    conf.setProperty("cron","53 * * * *")
+    conf.setProperty("app_name","IS-Scheduling-Coodinate")
+    conf.setProperty("app_start_wf","hdfs:///user/mengxp/IS/IS-Workflow/workflow.xml")
+
+    //智能调度的workflow的配置
+    conf.setProperty("app_name_wf","IS-Scheduling-Workflow")
+    conf.setProperty("cronId","68")
+    //部分参数可以在coodirnate的xml中自动解析生成 比如IS的workflow的date
+    //conf.setProperty("date","2021-02-02")
+
+    //这个参数是IS-Server的lib包的路径
+    conf.setProperty("oozie.libpath","hdfs://cdhtest/user/mengxp/IS/IS-lib")
+    val client=new OozieClient(oozieUrl)
+    val oozieJobId=client.run(conf)
+    println(conf)
+    while (client.getJobInfo(oozieJobId).getStatus.equals(WorkflowJob.Status.RUNNING)){
+      println("Workflow job running ...")
+      Thread.sleep(10 * 1000)
+    }
+    println("Workflow job completed ...")
+    println(client.getJobInfo(oozieJobId))
+  }
+
+
   /**
    * runCoodinate-elephant-data
    */
