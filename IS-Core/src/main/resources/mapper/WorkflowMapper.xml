@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etl.ds.core.mapper.WorkflowMapper">
+    <resultMap id="BaseResultMap" type="com.etl.ds.core.entity.Workflow">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="mark" jdbcType="VARCHAR" property="mark"/>
+        <result column="env" jdbcType="TINYINT" property="env"/>
+        <result column="cron_id" jdbcType="INTEGER" property="cronId"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="version" jdbcType="INTEGER" property="version"/>
+        <result column="is_delete" jdbcType="INTEGER" property="isDelete"/>
+        <result column="priority" jdbcType="VARCHAR" property="priority"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="ready_time" jdbcType="VARCHAR" property="readyTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        `id`, `name`, `mark`, `env`, `cron_id`, `description`, `create_time`, `update_time`, `version`, `is_delete`, `priority`,`type`,`ready_time`
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `t_workflow`
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from `t_workflow`
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.etl.ds.core.entity.Workflow">
+        insert into `t_workflow` (`id`, `name`, `mark`,
+                                  `env`, `cron_id`, `description`, `version`, `is_delete`, `priority`, `type`,
+                                  `ready_time`)
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{mark,jdbcType=VARCHAR},
+                #{env,jdbcType=TINYINT}, #{cronId,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR},
+                #{version,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}, #{priority,jdbcType=VARCHAR},
+                #{type,jdbcType=VARCHAR}, #{readyTime,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective"
+            useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.etl.ds.core.entity.Workflow">
+        insert into `t_workflow`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                `id`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="mark != null">
+                `mark`,
+            </if>
+            <if test="env != null">
+                `env`,
+            </if>
+            <if test="cronId != null">
+                `cron_id`,
+            </if>
+            <if test="description != null">
+                `description`,
+            </if>
+            <if test="version != null">
+                `version`,
+            </if>
+            <if test="isDelete != null">
+                `is_delete`,
+            </if>
+            <if test="priority != null">
+                `priority`,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="readyTime != null">
+                `ready_time`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="mark != null">
+                #{mark,jdbcType=VARCHAR},
+            </if>
+            <if test="env != null">
+                #{env,jdbcType=TINYINT},
+            </if>
+            <if test="cronId != null">
+                #{cronId,jdbcType=INTEGER},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=TINYINT},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=TINYINT},
+            </if>
+            <if test="priority != null">
+                #{priority,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="readyTime != null">
+                #{readyTime,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.etl.ds.core.entity.Workflow">
+        update `t_workflow`
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="mark != null">
+                `mark` = #{mark,jdbcType=VARCHAR},
+            </if>
+            <if test="env != null">
+                `env` = #{env,jdbcType=TINYINT},
+            </if>
+            <if test="cronId != null">
+                `cron_id` = #{cronId,jdbcType=INTEGER},
+            </if>
+            <if test="description != null">
+                `description` = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null">
+                `version` = #{version,jdbcType=TINYINT},
+            </if>
+            <if test="isDelete != null">
+                `is_delete` = #{isDelete,jdbcType=TINYINT},
+            </if>
+            <if test="priority != null">
+                `priority` = #{priority,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="readyTime != null">
+                `ready_time` = #{readyTime,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.etl.ds.core.entity.Workflow">
+        update `t_workflow`
+        set `name`        = #{name,jdbcType=VARCHAR},
+            `mark`        = #{mark,jdbcType=VARCHAR},
+            `env`         = #{env,jdbcType=TINYINT},
+            `cron_id`     = #{cronId,jdbcType=INTEGER},
+            `description` = #{description,jdbcType=VARCHAR},
+            `version`=#{version,jdbcType=TINYINT},
+            `is_delete`=#{isDelete,jdbcType=TINYINT},
+            `priority`=#{priority,jdbcType=VARCHAR},
+            `type`=#{type,jdbcType=VARCHAR},
+            `ready_time`  = #{readyTime,jdbcType=VARCHAR}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `t_workflow`
+        where `is_delete` = 0
+    </select>
+
+    <select id="findByEnv" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `t_workflow`
+        where `is_delete` = 0
+        and `env` = #{env,jdbcType=TINYINT}
+        order by create_time desc
+    </select>
+
+    <select id="getByCronId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `t_workflow`
+        where `is_delete` = 0
+        and `cron_id` = #{env,jdbcType=INTEGER}
+    </select>
+
+    <select id="findByEnvAndMark" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `t_workflow`
+        where `is_delete` = 0
+        and `mark` = #{mark,jdbcType=VARCHAR}
+        and `env` = #{env,jdbcType=TINYINT}
+        order by create_time desc
+    </select>
+
+</mapper>

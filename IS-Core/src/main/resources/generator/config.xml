@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <!-- defaultModelType="flat" 设置复合主键时不单独为主键创建实体 -->
+    <context id="mysql"
+             defaultModelType="flat"
+             targetRuntime="MyBatis3">
+
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!--注释-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 数据库连接 -->
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://sr-dev-mysql-master-1.gz.cvte.cn:3306/etl_ds?characterEncoding=UTF-8"
+                        userId="seewo"
+                        password="seewo@cvte">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 生成POJO对象，并将类放到com.seewo.etl.ds.core.entity包下 -->
+        <javaModelGenerator targetPackage="com.etl.ds.core.entity"
+                            targetProject="/Users/mengxp/Desktop/code/IntelligentScheduling/IS-Core/src/main/java">
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成mapper xml文件，并放到resources下的mapper文件夹下 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="/Users/mengxp/Desktop/code/IntelligentScheduling/IS-Core/src/main/resources/mybaties"/>
+
+        <!-- 生成mapper xml对应dao接口，放到com.seewo.etl.ds.core.mapper包下-->
+        <javaClientGenerator targetPackage="com.etl.ds.core.mapper" targetProject="/Users/mengxp/Desktop/code/IntelligentScheduling/IS-Core/src/main/java"
+                             type="XMLMAPPER"/>
+
+        <!-- table标签可以有多个，至少一个，tableName指定表名，可以使用_和%通配符 -->
+
+        <table tableName="t_task"
+               delimitIdentifiers="true"
+               delimitAllColumns="true"
+               enableInsert="true"
+               enableDeleteByPrimaryKey="true"
+               enableSelectByPrimaryKey="true"
+               enableUpdateByPrimaryKey="true"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+            <property name="modelOnly" value="false"/>
+            <domainObjectRenamingRule searchString="^T" replaceString=""/>
+            <columnOverride column="type" javaType="java.lang.Integer"/>
+            <columnOverride column="is_delete" javaType="java.lang.Integer"/>
+        </table>
+
+        <!--        <table tableName="t_check_source_log"-->
+        <!--               delimitIdentifiers="true"-->
+        <!--               delimitAllColumns="true"-->
+        <!--               enableInsert="true"-->
+        <!--               enableDeleteByPrimaryKey="true"-->
+        <!--               enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true"-->
+        <!--               enableCountByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false"-->
+        <!--        >-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <domainObjectRenamingRule searchString="^T" replaceString=""/>-->
+        <!--            <columnOverride column="db_type" javaType="java.lang.Integer"/>-->
+        <!--            <columnOverride column="state" javaType="java.lang.Integer"/>-->
+        <!--            <ignoreColumn column="create_time"/>-->
+        <!--            <ignoreColumn column="update_time"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="t_alert_subscribe"-->
+        <!--               delimitIdentifiers="true"-->
+        <!--               delimitAllColumns="true"-->
+        <!--               enableInsert="true"-->
+        <!--               enableDeleteByPrimaryKey="true"-->
+        <!--               enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true"-->
+        <!--               enableCountByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false"-->
+        <!--        >-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <domainObjectRenamingRule searchString="^T" replaceString=""/>-->
+        <!--            <ignoreColumn column="create_time"/>-->
+        <!--            <ignoreColumn column="update_time"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="t_reflux_table"-->
+        <!--               delimitIdentifiers="true"-->
+        <!--               delimitAllColumns="true"-->
+        <!--               enableInsert="true"-->
+        <!--               enableDeleteByPrimaryKey="true"-->
+        <!--               enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true"-->
+        <!--               enableCountByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false"-->
+        <!--        >-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <domainObjectRenamingRule searchString="^T" replaceString=""/>-->
+        <!--            <columnOverride column="env" javaType="java.lang.Integer"/>-->
+        <!--            <ignoreColumn column="create_time"/>-->
+        <!--            <ignoreColumn column="update_time"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="t_cron"-->
+        <!--               delimitIdentifiers="true"-->
+        <!--               delimitAllColumns="true"-->
+        <!--               enableInsert="true"-->
+        <!--               enableDeleteByPrimaryKey="true"-->
+        <!--               enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true"-->
+        <!--               enableCountByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false"-->
+        <!--        >-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <domainObjectRenamingRule searchString="^T" replaceString=""/>-->
+        <!--            <ignoreColumn column="create_time"/>-->
+        <!--            <ignoreColumn column="update_time"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="t_workflow"-->
+        <!--               delimitIdentifiers="true"-->
+        <!--               delimitAllColumns="true"-->
+        <!--               enableInsert="true"-->
+        <!--               enableDeleteByPrimaryKey="true"-->
+        <!--               enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true"-->
+        <!--               enableCountByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false"-->
+        <!--        >-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <domainObjectRenamingRule searchString="^T" replaceString=""/>-->
+        <!--            <columnOverride column="val" javaType="java.lang.Integer"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="t_data_source_info"-->
+        <!--               delimitIdentifiers="true"-->
+        <!--               delimitAllColumns="true"-->
+        <!--               enableInsert="true"-->
+        <!--               enableDeleteByPrimaryKey="true"-->
+        <!--               enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true"-->
+        <!--               enableCountByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false"-->
+        <!--        >-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <domainObjectRenamingRule searchString="^T" replaceString=""/>-->
+        <!--            <columnOverride column="val" javaType="java.lang.Integer"/>-->
+        <!--            <columnOverride column="val" javaType="java.lang.Integer"/>-->
+        <!--            <ignoreColumn column="create_time"/>-->
+        <!--            <ignoreColumn column="update_time"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="t_task"-->
+        <!--               delimitIdentifiers="true"-->
+        <!--               delimitAllColumns="true"-->
+        <!--               enableInsert="true"-->
+        <!--               enableDeleteByPrimaryKey="true"-->
+        <!--               enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true"-->
+        <!--               enableCountByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false"-->
+        <!--        >-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <domainObjectRenamingRule searchString="^T" replaceString=""/>-->
+        <!--            <columnOverride column="val" javaType="java.lang.Integer"/>-->
+        <!--            <columnOverride column="is_delete" javaType="java.lang.Integer"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="t_workflow_instance"-->
+        <!--               delimitIdentifiers="true"-->
+        <!--               delimitAllColumns="true"-->
+        <!--               enableInsert="true"-->
+        <!--               enableDeleteByPrimaryKey="true"-->
+        <!--               enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true"-->
+        <!--               enableCountByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false"-->
+        <!--        >-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <domainObjectRenamingRule searchString="^T" replaceString=""/>-->
+        <!--            <columnOverride column="val" javaType="java.lang.Integer"/>-->
+        <!--            <columnOverride column="val" javaType="java.lang.Integer"/>-->
+        <!--            <columnOverride column="rate" javaType="java.lang.Integer"/>-->
+        <!--            <ignoreColumn column="create_time"/>-->
+        <!--            <ignoreColumn column="update_time"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="t_task_instance"-->
+        <!--               delimitIdentifiers="true"-->
+        <!--               delimitAllColumns="true"-->
+        <!--               enableInsert="true"-->
+        <!--               enableDeleteByPrimaryKey="true"-->
+        <!--               enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true"-->
+        <!--               enableCountByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false"-->
+        <!--        >-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <domainObjectRenamingRule searchString="^T" replaceString=""/>-->
+        <!--            <columnOverride column="val" javaType="java.lang.Integer"/>-->
+        <!--            <ignoreColumn column="create_time"/>-->
+        <!--            <ignoreColumn column="update_time"/>-->
+        <!--        </table>-->
+
+        <!--        <table tableName="t_table_scheduled"-->
+        <!--               delimitIdentifiers="true"-->
+        <!--               delimitAllColumns="true"-->
+        <!--               enableInsert="true"-->
+        <!--               enableDeleteByPrimaryKey="true"-->
+        <!--               enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true"-->
+        <!--               enableCountByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false"-->
+        <!--        >-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <domainObjectRenamingRule searchString="^T" replaceString=""/>-->
+        <!--            <columnOverride column="db_type" javaType="java.lang.Integer"/>-->
+        <!--            <ignoreColumn column="create_time"/>-->
+        <!--            <ignoreColumn column="update_time"/>-->
+        <!--        </table>-->
+
+
+        <!--        <table tableName="t_reflux_group"-->
+        <!--               delimitIdentifiers="true"-->
+        <!--               delimitAllColumns="true"-->
+        <!--               enableInsert="true"-->
+        <!--               enableDeleteByPrimaryKey="true"-->
+        <!--               enableSelectByPrimaryKey="true"-->
+        <!--               enableUpdateByPrimaryKey="true"-->
+        <!--               enableCountByExample="false"-->
+        <!--               enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false"-->
+        <!--        >-->
+        <!--            <property name="modelOnly" value="false"/>-->
+        <!--            <domainObjectRenamingRule searchString="^T" replaceString=""/>-->
+        <!--            <columnOverride column="val" javaType="java.lang.Integer"/>-->
+        <!--            <ignoreColumn column="create_time"/>-->
+        <!--            <ignoreColumn column="update_time"/>-->
+        <!--        </table>-->
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.seewo.compiler:wax-bee:1.3.21">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../env/maven-repos/com/seewo/compiler/wax-bee/1.3.21/wax-bee-1.3.21.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../env/maven-repos/com/seewo/compiler/wax-bee/1.3.21/wax-bee-1.3.21-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../env/maven-repos/com/seewo/compiler/wax-bee/1.3.21/wax-bee-1.3.21-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
