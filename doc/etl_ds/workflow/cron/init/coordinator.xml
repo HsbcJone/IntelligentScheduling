@@ -1,0 +1,32 @@
+<coordinator-app name="${app_name}"
+  frequency="${cron}"
+  start="${start_date}" end="${end_date}" timezone="Asia/Shanghai"
+  xmlns="uri:oozie:coordinator:0.2"
+  >
+  <controls>
+    <execution>FIFO</execution>
+  </controls>
+  <action>
+    <workflow>
+      <app-path>${app_start_wf}</app-path>
+      <configuration>   
+       <property>
+            <name>date</name>
+            <value>${coord:formatTime(coord:dateOffset(coord:nominalTime(), -1, 'DAY'), 'yyyy-MM-dd')}</value>
+        </property>
+        <property>
+            <name>oozie.use.system.libpath</name>
+            <value>true</value>
+        </property>
+        <property>
+            <name>start_date</name>
+            <value>${start_date}</value>
+        </property>
+        <property>
+            <name>end_date</name>
+            <value>${end_date}</value>
+        </property>
+      </configuration>
+   </workflow>
+  </action>
+</coordinator-app>

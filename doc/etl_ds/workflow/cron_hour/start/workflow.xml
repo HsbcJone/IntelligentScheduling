@@ -1,0 +1,34 @@
+<workflow-app name="${app_name}" xmlns="uri:oozie:workflow:0.5">
+    <start to="java-coordinator"/>
+    <kill name="Kill">
+        <message>Action failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+    </kill>
+    <action name="java-coordinator" retry-max="5" retry-interval="5" >
+        <java>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+                <property>
+                    <name>oozie.launcher.mapred.job.queue.name</name>
+                    <value>root.jwth.etl</value>
+                </property>
+                <property>
+                    <name>mapreduce.job.queuename</name>
+                    <value>root.jwth.etl</value>
+                </property>
+            </configuration>
+            <main-class>org.springframework.boot.loader.JarLauncher</main-class>
+            <arg>ETL_HOUR_START</arg>
+           <arg>${cronId}</arg>
+           <arg>${year}</arg>
+           <arg>${month}</arg>
+           <arg>${day}</arg>
+           <arg>${hour}</arg>
+           <arg>${minute}</arg>
+          <capture-output/>
+        </java>
+        <ok to="End"/>
+        <error to="Kill"/>
+    </action>
+    <end name="End"/>
+</workflow-app>

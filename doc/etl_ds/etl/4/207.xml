@@ -1,0 +1,37 @@
+<workflow-app name="etl_ds_hive2_action-${etl_name}" xmlns="uri:oozie:workflow:0.5">
+    <start to="hive2_action"/>
+    <kill name="Kill">
+        <message>Action failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+    </kill> 
+    <action name="hive2_action" cred="hive2" retry-max="3" retry-interval="1" >
+        <hive2 xmlns="uri:oozie:hive2-action:0.1">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <configuration>
+               <property>
+                    <name>oozie.launcher.mapreduce.map.memory.mb</name>
+                    <value>1024</value>
+                </property>
+                <property>
+                    <name>oozie.launcher.yarn.app.mapreduce.am.resource.mb</name>
+                    <value>1024</value>
+                </property>
+                <property>
+                    <name>oozie.launcher.mapred.job.queue.name</name>
+                    <value>${launcher_queue}</value>
+                </property>
+                <property>
+                    <name>mapreduce.job.queuename</name>
+                    <value>${mapreduce_queue}</value>
+                </property>
+            </configuration>
+            <jdbc-url>${hiveServerUrl}?mapred.job.queue.name=${mapreduce_queue}</jdbc-url>
+            <password>${p}</password>
+            <script>${script}</script>
+            <param>biz_date=${biz_date}</param>
+        </hive2>
+        <ok to="End"/>
+        <error to="Kill"/>
+    </action>
+    <end name="End"/>
+</workflow-app>
