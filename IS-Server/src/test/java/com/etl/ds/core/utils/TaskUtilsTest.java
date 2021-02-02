@@ -24,7 +24,7 @@ public class TaskUtilsTest  extends BaseTest {
     @Test
     public  void getAllTask(){
         List<Task> activeByWorkflowId = taskMapper.findActiveByWorkflowId(1);
-        activeByWorkflowId.stream().map(x->x.getId()).sorted().forEach(System.out::println);
+        //activeByWorkflowId.stream().map(x->x.getId()).sorted().forEach(System.out::println);
         System.out.println(activeByWorkflowId);
     }
 

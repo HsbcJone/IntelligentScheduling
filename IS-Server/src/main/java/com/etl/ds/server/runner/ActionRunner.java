@@ -16,7 +16,7 @@ public class ActionRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        args=new String[]{"ETL_START","68","2021-01-22"};
+        //args=new String[]{"ETL_START","68","2021-01-22"};
         if (args == null || args.length == 0) {
             throw new RuntimeException("Oozie Action 参数不能为空");
         }
